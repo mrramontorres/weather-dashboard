@@ -32,6 +32,24 @@ $.ajax({
     // Add temp content to html
     $("#todayTemp").text(tempF.toFixed(1));
 
+    // Converting dt to date format - SOURCE FROM: https://usefulangle.com/post/258/javascript-timestamp-to-date-time
+    var ts = response.dt;
+    console.log(ts);
+    // Convert unix timestamp to milliseconds 
+    var ts_ms = ts * 1000;
+    // initialize new Date object
+    var date_ob = new Date(ts_ms);
+    // year as 4 digits (YYYY)
+    var year = date_ob.getFullYear().toString().substr(-2);
+    // month as 2 digits (MM)
+    var month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+    // date as 2 digits (DD)
+    var date = ("0" + date_ob.getDate()).slice(-2);
+    // Convert object to string
+    var todayDate = JSON.stringify( "(" + month + "/" + date+ "/" + year + ")" );
+
+    // Add temp content to html
+    $("#todayDate").text(todayDate);
   });
 
   // Here we run our AJAX call to the OpenWeatherMap API for the 5 day forecast
@@ -48,27 +66,22 @@ $.ajax({
     // Log the resulting object
     console.log(response2);
 
-    var ts = response2.list[2].dt;
-    console.log(ts);
+    var ts2 = response2.list[2].dt;
+    console.log(ts2);
 
-// convert unix timestamp to milliseconds
-var ts_ms = ts * 1000;
-
-// initialize new Date object
-var date_ob = new Date(ts_ms);
-
-// year as 4 digits (YYYY)
-var year = date_ob.getFullYear();
-
-// month as 2 digits (MM)
-var month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
-
-// date as 2 digits (DD)
-var date = ("0" + date_ob.getDate()).slice(-2);
-
-
-// date as YYYY-MM-DD format
-console.log("Date as YYYY-MM-DD Format: " + year + "-" + month + "-" + date);
+    // Converting dt - SOURCE FROM: https://usefulangle.com/post/258/javascript-timestamp-to-date-time
+    // Convert unix timestamp to milliseconds 
+    var ts2_ms = ts2 * 1000;
+    // initialize new Date object
+    var date_ob = new Date(ts2_ms);
+    // year as 4 digits (YYYY)
+    var year = date_ob.getFullYear().toString().substr(-2);
+    // month as 2 digits (MM)
+    var month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+    // date as 2 digits (DD)
+    var date = ("0" + date_ob.getDate()).slice(-2);
+    // date as MM/DD/YY format
+    console.log("Date as MM/DD/YY Format: " + month + "/" + date+ "/" + year);
 
     // Transfer content to HTML
 
