@@ -54,9 +54,6 @@ $.ajax({
   // We store all of the retrieved data inside of an object called "response2"
   .then(function(response2) {
 
-    // Log the resulting object
-    console.log(response2);
-
     // Converting dt - SOURCE CODE from above
     var tsF = response2.list[10].dt;
     // Convert unix timestamp to milliseconds 
@@ -72,15 +69,20 @@ $.ajax({
     // date as MM/DD/YY format
     var t2 = " " + month + "/" + date+ "/" + year + " ";
 
-    // Transfer content to HTML
+    // Transfer date content to HTML
     $("#day2date").text(t2);
 
-    console.log(response2.list[10].main.temp.toFixed(1));
-
-    // Convert the temp to fahrenheit
+    // Convert the temp to fahrenheit and transfer content to HTML
     var tempF = (response2.list[10].main.temp - 273.15) * 1.80 + 32;
-
     $("#day2temp").text(tempF.toFixed(1));
+    
+    // Transfer humidity content to HTML
+    $("#day2humi").text(response2.list[10].main.humidity.toFixed(0)+ "%");
+
+    // Transfer icon to HTML
+    var dayIcon = response2.list[10].weather[0].icon;
+    var iconLocation = "http://openweathermap.org/img/wn/" + dayIcon + "@2x.png";
+    $("#day2icon").html('<img src="' + iconLocation +'" </img>');
 
   });
 
