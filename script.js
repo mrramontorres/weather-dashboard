@@ -1,11 +1,13 @@
-// This is our API key
-var APIKey = "bb112b280c04aa2586dddb642810a9b4";
 
-// Here we are building the URL we need to query the database
+var APIKey = "c015bf6d88825f9546c67756f3da9172";
+var APIKey2 = "96e67339da4fefa3ae347dc38139bc90";
+
+// Here we are building the URLs we need to query the database
 var city = "London"
 var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
+var queryURL2 = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + APIKey;
 
-// Here we run our AJAX call to the OpenWeatherMap API
+// Here we run our AJAX call to the OpenWeatherMap API for the today's weather
 $.ajax({
   url: queryURL,
   method: "GET"
@@ -28,11 +30,58 @@ $.ajax({
     var tempF = (response.main.temp - 273.15) * 1.80 + 32;
 
     // Add temp content to html
-    $(".temp").text("Temperature (K) " + response.main.temp);
-    $(".tempF").text("Temperature (F) " + tempF.toFixed(2));
+    $("#todayTemp").text(tempF.toFixed(1));
 
-    // Log the data in the console as well
-    console.log("Wind Speed: " + response.wind.speed);
-    console.log("Humidity: " + response.main.humidity);
-    console.log("Temperature (F): " + tempF);
   });
+
+  // Here we run our AJAX call to the OpenWeatherMap API for the 5 day forecast
+$.ajax({
+  url: queryURL2,
+  method: "GET"
+})
+  // We store all of the retrieved data inside of an object called "response2"
+  .then(function(response2) {
+
+    // Log the queryURL2
+    console.log(queryURL2);
+
+    // Log the resulting object
+    console.log(response2);
+
+    var ts = response2.list[2].dt;
+    console.log(ts);
+
+// convert unix timestamp to milliseconds
+var ts_ms = ts * 1000;
+
+// initialize new Date object
+var date_ob = new Date(ts_ms);
+
+// year as 4 digits (YYYY)
+var year = date_ob.getFullYear();
+
+// month as 2 digits (MM)
+var month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+
+// date as 2 digits (DD)
+var date = ("0" + date_ob.getDate()).slice(-2);
+
+
+// date as YYYY-MM-DD format
+console.log("Date as YYYY-MM-DD Format: " + year + "-" + month + "-" + date);
+
+    // Transfer content to HTML
+
+/*    // Transfer content to HTML
+    $("#cityName").text(response.name);
+    $("#todayWind").text(response.wind.speed + " MPH");
+    $("#todayHumi").text(response.main.humidity + "%");
+    
+    // Convert the temp to fahrenheit
+    var tempF = (response.main.temp - 273.15) * 1.80 + 32;
+
+    // Add temp content to html
+    $("#todayTemp").text(tempF.toFixed(1));
+*/
+  });
+
