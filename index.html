@@ -1,50 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link 
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" 
-      rel="stylesheet" 
-      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" 
-      crossorigin="anonymous"/>
-
-    <title>The Weather</title>
-</head>
-<body>
-    <header>
-        <h1> Weather Dashboard</h1>
-    </header>
-
-    <aside>
-        <h2>Search for a City </h2>
-
-    </aside>
-
-    <section>
-        <div>
-            <div> 
-                <h3>Search City</h3>
-                <textarea name="" id="" cols="30" rows="1"></textarea>
-                <button>Search</button>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css" />
+        <link 
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" 
+        rel="stylesheet" 
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" 
+        crossorigin="anonymous"/>
+        <title>The Weather</title>
+    </head>
+    <body>
+        <header>
+            <h1> Weather Dashboard</h1>
+        </header>
+        <section>
+            <div class="container-fluid p-0">
+                <div class="row">
+                        <div class="col-4">col-4
+                            <h2>Search for a City </h2>
+                            <form>
+                            <label for="citySearch"><strong>Enter City Name:</strong></label>
+                            <input type="text" name="citySearch" id="citySearch"/>
+                            <button id="submitBtn" class="btn">Search</button>
+                            </form>
+                        </div>
+                    <div class="col-8">col-8
+                        <div class="row">
+                            <div class="col">col top
+                                <div>
+                                    <h2>Selected City <i> Weather Icon </i> </h2>
+                                    <p>Temperature:</p>
+                                    <p>Humidity:</p>
+                                    <p>Wind Speed:</p>
+                                    <p>UV Index:</p>
+                                </div>
+                            </div>
+                            <div class="w-100"></div>
+                                <h2>5-Day Forecast: </h2>
+                                <div class="col">col bottom 
+                                    <div class="row">
+                                        <div class="col card bg-primary text-white">
+                                            <p>01/11/2019</p>
+                                            <i>icon</i>
+                                            <p>Temp:</p>
+                                            <p>Humidity:</p>
+                                        </div>
+                                        <div class="col card bg-primary text-white">
+                                            <p>01/11/2019</p>
+                                            <i>icon</i>
+                                            <p>Temp:</p>
+                                            <p>Humidity:</p>
+                                        </div>
+                                        <div class="col card bg-primary text-white">
+                                            <p>01/11/2019</p>
+                                            <i>icon</i>
+                                            <p>Temp:</p>
+                                            <p>Humidity:</p>
+                                        </div>
+                                        <div class="col card bg-primary text-white">
+                                            <p>01/11/2019</p>
+                                            <i>icon</i>
+                                            <p>Temp:</p>
+                                            <p>Humidity:</p>
+                                        </div>
+                                        <div class="col card bg-primary text-white">
+                                            <p>01/11/2019</p>
+                                            <i>icon</i>
+                                            <p>Temp:</p>
+                                            <p>Humidity:</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div>
-                <p>City1...</p>
-            </div>
-        </div>
-        <div>
-            <h2>Selected City <i> Weather Icon </i> </h2>
-            <p>Temperature:</p>
-            <p>Humidity:</p>
-            <p>Wind Speed:</p>
-            <p>UV Index:</p>
-        </div>
-        <div>
-            <h2>5-Day Forecast: </h2>
-            <p>Day</p>
-        </div>
-    </section>
-
-</body>
+        </section>
+    </body>
 </html>
 
