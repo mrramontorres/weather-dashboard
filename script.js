@@ -15,12 +15,6 @@ $.ajax({
   // We store all of the retrieved data inside of an object called "response"
   .then(function(response) {
 
-    // Log the queryURL
-    console.log(queryURL);
-
-    // Log the resulting object
-    console.log(response);
-
     // Transfer content to HTML
     $("#cityName").text(response.name);
     $("#todayWind").text(response.wind.speed + " MPH");
@@ -34,8 +28,7 @@ $.ajax({
 
     // Converting dt to date format - SOURCE FROM: https://usefulangle.com/post/258/javascript-timestamp-to-date-time
     var ts = response.dt;
-    console.log(ts);
-    // Convert unix timestamp to milliseconds 
+    // Convert unix timestamp to milliseconds
     var ts_ms = ts * 1000;
     // initialize new Date object
     var date_ob = new Date(ts_ms);
@@ -46,10 +39,11 @@ $.ajax({
     // date as 2 digits (DD)
     var date = ("0" + date_ob.getDate()).slice(-2);
     // Convert object to string
-    var todayDate = JSON.stringify( "(" + month + "/" + date+ "/" + year + ")" );
+    var t = " " + month + "/" + date+ "/" + year + " ";
 
     // Add temp content to html
-    $("#todayDate").text(todayDate);
+    $("#todayDate").text(t);
+
   });
 
   // Here we run our AJAX call to the OpenWeatherMap API for the 5 day forecast
@@ -60,20 +54,15 @@ $.ajax({
   // We store all of the retrieved data inside of an object called "response2"
   .then(function(response2) {
 
-    // Log the queryURL2
-    console.log(queryURL2);
-
     // Log the resulting object
     console.log(response2);
 
-    var ts2 = response2.list[2].dt;
-    console.log(ts2);
-
-    // Converting dt - SOURCE FROM: https://usefulangle.com/post/258/javascript-timestamp-to-date-time
+    // Converting dt - SOURCE CODE from above
+    var tsF = response2.list[10].dt;
     // Convert unix timestamp to milliseconds 
-    var ts2_ms = ts2 * 1000;
+    var tsF_ms = tsF * 1000;
     // initialize new Date object
-    var date_ob = new Date(ts2_ms);
+    var date_ob = new Date(tsF_ms);
     // year as 4 digits (YYYY)
     var year = date_ob.getFullYear().toString().substr(-2);
     // month as 2 digits (MM)
@@ -81,20 +70,17 @@ $.ajax({
     // date as 2 digits (DD)
     var date = ("0" + date_ob.getDate()).slice(-2);
     // date as MM/DD/YY format
-    console.log("Date as MM/DD/YY Format: " + month + "/" + date+ "/" + year);
+    var t2 = " " + month + "/" + date+ "/" + year + " ";
 
     // Transfer content to HTML
+    $("#day2date").text(t2);
 
-/*    // Transfer content to HTML
-    $("#cityName").text(response.name);
-    $("#todayWind").text(response.wind.speed + " MPH");
-    $("#todayHumi").text(response.main.humidity + "%");
-    
+    console.log(response2.list[10].main.temp.toFixed(1));
+
     // Convert the temp to fahrenheit
-    var tempF = (response.main.temp - 273.15) * 1.80 + 32;
+    var tempF = (response2.list[10].main.temp - 273.15) * 1.80 + 32;
 
-    // Add temp content to html
-    $("#todayTemp").text(tempF.toFixed(1));
-*/
+    $("#day2temp").text(tempF.toFixed(1));
+
   });
 
