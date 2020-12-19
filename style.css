@@ -36,3 +36,6 @@ form.find input[type=text] {
     clear: both;
     display: table;
   }
+  #todayUV{
+    background-color:red;
+  }
