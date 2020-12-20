@@ -17,19 +17,20 @@
         <section>
             <div class="container-fluid p-2">
                 <div class="row">
+
                         <div class="col-3 bg-light">
-                            <h6>Search for a City:</h6>
-                            <form class="find" >
-                                <input type="text" placeholder="" name="find">
-                                <button type="submit"><i class="fa fa-search"></i></button>
+                            <form method="POST">
+                                <label for="citySearch"><strong>Search for a City:</strong></label>
+                                <input type="text" name="citySearch" id="citySearch"/>
+                                <button id="submitBtn" class="btn">Submit</button>
                             </form>
-                            <br>
                             <div class="card">
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item">test</li>
                                 </ul>
                             </div>
                         </div>
+
                     <div class="col-9">
                         <div class="row">
                             <div class="col">
@@ -45,14 +46,16 @@
                                 <h6>5-Day Forecast: </h6s>
                                 <div class="col"> 
                                     <div class="row">
+
                                         <div class="col">
                                             <div class="card bg-primary text-white">
                                                 <p id="day2date"></span></span></p>
                                                 <a id="day2icon"></a>
-                                                <p>Temperature: <span id="day2temp"></span></span> <span>&#8457;</span></p>
+                                                <p>Temperature: <span id="day2temp"></span></span> <span> &#8457; </span></p>
                                                 <p>Humidity: <span id="day2humi"></span></p>
                                             </div>
                                         </div>
+
                                         <div class="col">
                                             <div class="card bg-primary text-white">
                                                 <p id="day3date"></span></span></p>

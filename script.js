@@ -1,3 +1,19 @@
+//City search submission process.
+document.getElementById("submitBtn").addEventListener("click",function(event) {
+    event.preventDefault();
+        //Create a city object from submission
+        var cityName = {
+          city: citySearch.value.trim(),
+        };
+
+        if(cityName.city == ""){
+          alert("Enter a city!");
+        } else {
+          
+        }
+
+    console.log(cityName);
+});
 
 var APIKey = "c015bf6d88825f9546c67756f3da9172";
 var APIKey2 = "96e67339da4fefa3ae347dc38139bc90";
@@ -85,4 +101,5 @@ $.ajax({
     $("#day2icon").html('<img src="' + iconLocation +'" </img>');
 
   });
+
 
