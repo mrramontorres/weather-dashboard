@@ -2,24 +2,20 @@
 document.getElementById("submitBtn").addEventListener("click",function(event) {
     event.preventDefault();
         //Create a city object from submission
-        var cityName = {
-          city: citySearch.value.trim(),
-        };
+        var cityName = citySearch.value.trim();
 
+        //Check function is not b a city object from submission
         if(cityName.city == ""){
           alert("Enter a city!");
-        } else {
-          
         }
-
     console.log(cityName);
-});
+
 
 var APIKey = "c015bf6d88825f9546c67756f3da9172";
 var APIKey2 = "96e67339da4fefa3ae347dc38139bc90";
 
 // Here we are building the URLs we need to query the database
-var city = "London"
+var city = cityName.split(' ').join(',')
 var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
 var queryURL2 = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + APIKey;
 
@@ -31,7 +27,13 @@ $.ajax({
   // We store all of the retrieved data inside of an object called "response"
   .then(function(response) {
 
+    
+    console.log(queryURL);
+    console.log(response);
+    
+    
     // Transfer content to HTML
+    console.log(response.name);
     $("#cityName").text(response.name);
     $("#todayWind").text(response.wind.speed + " MPH");
     $("#todayHumi").text(response.main.humidity + "%");
@@ -59,6 +61,11 @@ $.ajax({
 
     // Add temp content to html
     $("#todayDate").text(t);
+
+    // Transfer icon to HTML
+    var todayIcon = response.weather[0].icon;
+    var iconLocation = "http://openweathermap.org/img/wn/" + todayIcon + "@2x.png";
+    $("#todayIcon").html('<img src="' + iconLocation +'" </img>');
 
   });
 
@@ -102,4 +109,4 @@ $.ajax({
 
   });
 
-
+});
