@@ -3,19 +3,17 @@ document.getElementById("submitBtn").addEventListener("click",function(event) {
     event.preventDefault();
         //Create a city object from submission
         var cityName = citySearch.value.trim();
-
+        var cityDivname = citySearch.value.trim();
         //Check function is not b a city object from submission
-        if(cityName.city == ""){
+        if(cityName == ""){
           alert("Enter a city!");
         }
-    console.log(cityName);
-
 
 var APIKey = "c015bf6d88825f9546c67756f3da9172";
 var APIKey2 = "96e67339da4fefa3ae347dc38139bc90";
 
 // Here we are building the URLs we need to query the database
-var city = cityName.split(' ').join(',')
+var city = cityName
 var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
 var queryURL2 = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + APIKey;
 
@@ -24,20 +22,14 @@ $.ajax({
   url: queryURL,
   method: "GET"
 })
-  // We store all of the retrieved data inside of an object called "response"
+// We store all of the retrieved data inside of an object called "response"
   .then(function(response) {
 
-    
-    console.log(queryURL);
-    console.log(response);
-    
-    
     // Transfer content to HTML
-    console.log(response.name);
-    $("#cityName").text(response.name);
+    $("#cityName").text(cityName);
     $("#todayWind").text(response.wind.speed + " MPH");
     $("#todayHumi").text(response.main.humidity + "%");
-    
+
     // Convert the temp to fahrenheit
     var tempF = (response.main.temp - 273.15) * 1.80 + 32;
 
@@ -67,7 +59,22 @@ $.ajax({
     var iconLocation = "http://openweathermap.org/img/wn/" + todayIcon + "@2x.png";
     $("#todayIcon").html('<img src="' + iconLocation +'" </img>');
 
+    // Add UV index by collecting lat and lon from first URL and passing it through to a different ajax call
+    var lat = response.coord.lat;
+    var lon = response.coord.lon;
+    var queryURL3 = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=" + APIKey;
+    $.ajax({
+      url: queryURL3,
+      method: "GET"
+    })
+      .then(function(response3) {
+        var uv = response3.value;
+        $("#todayUV").text(uv);
+      });
   });
+
+
+
 
   // Here we run our AJAX call to the OpenWeatherMap API for the 5 day forecast
 $.ajax({
