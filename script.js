@@ -1,30 +1,35 @@
-var cityList = [];
+  var cityList = [];
+  var savedList = JSON.parse(localStorage.getItem('theList'));
 
-// City search submission process
-document.getElementById("submitBtn").addEventListener("click",function(event) {
-    event.preventDefault();
+  function runCity() {
 
-    // Erases any exisiting city data at second click
-    $("#addHere").html("");
+      // Erases any exisiting city data at second click
+      $("#addHere").html("");
 
-        // Create a city object from submission
-        var cityName = citySearch.value.trim();
-        console.log(cityName);
-        // Check function is not b a city object from submission
-        if(cityName == ""){
-          alert("Enter a city!");
-        }
-        cityList.push(cityName);
+          // Create a city object from submission
+          var cityName = citySearch.value.trim();
 
-    // Creates list based on city name entered in aside form
-    var newCity = $("<li></li>").text(cityName).addClass("list-group-item");
-    $("#list").prepend(newCity);
+          // Check function is not b a city object from submission
+          if(cityName == ""){
+            alert("Enter a city!");
+          }
+          cityList.push(cityName);
+          //console.log(JSON.stringify(cityList));
+          localStorage.setItem("theList",JSON.stringify(cityList));
 
+      // Creates list based on city name entered in aside form
+      var newCity = $("<li></li>").text(cityName).addClass("list-group-item");
+      $("#list").prepend(newCity);
+
+      runSpecificCity(cityName);
+  }
+
+  function runSpecificCity(cityText) {
     //APIKey for source
     var APIKey = "c015bf6d88825f9546c67756f3da9172";
 
     // Here we are building the URLs we need to query the database
-    var city = cityName
+    var city = cityText;
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
     var queryURL2 = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + APIKey;
 
@@ -38,7 +43,7 @@ document.getElementById("submitBtn").addEventListener("click",function(event) {
     .then(function(response) {
 
       // Transfer content to HTML
-      $("#cityName").text(cityName);
+      $("#cityName").text(cityText);
       $("#todayWind").text(response.wind.speed + " MPH");
       $("#todayHumi").text(response.main.humidity + "%");
 
@@ -120,4 +125,21 @@ document.getElementById("submitBtn").addEventListener("click",function(event) {
       };
 
     });
-      //console.log($("li.list-group-item").text());
+  }
+
+  for (i = 0; i < savedList.length; i++) {
+    var newCity = $("<li></li>").text(savedList[i]).addClass("list-group-item");
+    $("#list").prepend(newCity);
+    if (i== (savedList.length-1)){
+      runSpecificCity(savedList[i])
+    }
+    //newCity.addEventListener("click", runSpecificCity(savedList[i]));
+    console.log(newCity);
+  }
+
+  // City search submission process
+  document.getElementById("submitBtn").addEventListener("click",function(event) {
+      event.preventDefault();
+      runCity();
+
+    });
