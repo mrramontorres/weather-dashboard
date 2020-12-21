@@ -128,13 +128,19 @@
   }
 
   for (i = 0; i < savedList.length; i++) {
-    var newCity = $("<li></li>").text(savedList[i]).addClass("list-group-item");
+    var theCityInTheLoop = savedList[i];
+    var newCity = $("<li id='city" + i + "'></li>").text(savedList[i]).addClass("list-group-item");
     $("#list").prepend(newCity);
     if (i== (savedList.length-1)){
       runSpecificCity(savedList[i])
     }
-    //newCity.addEventListener("click", runSpecificCity(savedList[i]));
-    console.log(newCity);
+    
+    document.getElementById("city"+i).addEventListener("click", function(event) {
+      console.log(event);
+      $("#addHere").html("");
+      runSpecificCity(event.target.innerHTML);
+    });
+
   }
 
   // City search submission process
