@@ -15,7 +15,7 @@ document.getElementById("submitBtn").addEventListener("click",function(event) {
 
     // Creates list based on city name entered in aside form
     var newCity = $("<li></li>").text(cityName).addClass("list-group-item");
-    $("#list").append(newCity);
+    $("#list").prepend(newCity);
 
     var APIKey = "c015bf6d88825f9546c67756f3da9172";
 
