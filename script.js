@@ -1,5 +1,6 @@
   var cityList = [];
   var savedList = JSON.parse(localStorage.getItem('theList'));
+  var addedCityCount = 0;
 
   function runCity() {
 
@@ -14,12 +15,18 @@
             alert("Enter a city!");
           }
           cityList.push(cityName);
-          //console.log(JSON.stringify(cityList));
+          console.log(JSON.stringify(cityList));
           localStorage.setItem("theList",JSON.stringify(cityList));
 
       // Creates list based on city name entered in aside form
-      var newCity = $("<li></li>").text(cityName).addClass("list-group-item");
+      var newCity = $("<li id='addedcity" + addedCityCount + "'></li>").text(cityName).addClass("list-group-item");
       $("#list").prepend(newCity);
+
+      document.getElementById("addedcity" + addedCityCount).addEventListener("click", function(event) {
+        console.log(event);
+        $("#addHere").html("");
+        runSpecificCity(event.target.innerHTML);
+      });
 
       runSpecificCity(cityName);
   }
@@ -126,6 +133,7 @@
 
     });
   }
+ if(savedList){
 
   for (i = 0; i < savedList.length; i++) {
     var theCityInTheLoop = savedList[i];
@@ -143,6 +151,8 @@
 
   }
 
+ } 
+  
   // City search submission process
   document.getElementById("submitBtn").addEventListener("click",function(event) {
       event.preventDefault();
