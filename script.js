@@ -142,6 +142,8 @@
     if (i== (savedList.length-1)){
       runSpecificCity(savedList[i])
     }
+
+    cityList.push(savedList[i]);
     
     document.getElementById("city"+i).addEventListener("click", function(event) {
       console.log(event);
