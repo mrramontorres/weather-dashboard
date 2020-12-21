@@ -3,11 +3,25 @@ body, p {
     font-size: 14px;
 }
 header {
-    background-color: rgb(24, 22, 22);
-    color: white;
-    text-align: center;
-    padding: 5px;
+  background-color: rgb(24, 22, 22);
+  color: white;
+  text-align: center;
+  padding: 5px;
 }
-  #todayUV{
+input[type=text] {
+  width: 100%;
+  color: black;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: grey;
+  border-radius: 4px;
+  cursor: pointer;
+}
+#submitBtn{
+  background-color: rgb(8, 50, 130);
+  color: rgb(255, 255, 255);
+}
+
+#todayUV{
     background-color:red;
-  }
+}

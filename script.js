@@ -1,32 +1,36 @@
-//City search submission process.
+// City search submission process
 document.getElementById("submitBtn").addEventListener("click",function(event) {
     event.preventDefault();
+
+    // Erases any exisiting city data at second click
     $("#addHere").html("");
-        //Create a city object from submission
+
+        // Create a city object from submission
         var cityName = citySearch.value.trim();
-        //Check function is not b a city object from submission
+
+        // Check function is not b a city object from submission
         if(cityName == ""){
           alert("Enter a city!");
         }
 
+    // Creates list based on city name entered in aside form
     var newCity = $("<li></li>").text(cityName).addClass("list-group-item");
-    console.log(newCity);
     $("#list").append(newCity);
 
-  var APIKey = "c015bf6d88825f9546c67756f3da9172";
-  var APIKey2 = "96e67339da4fefa3ae347dc38139bc90";
+    var APIKey = "c015bf6d88825f9546c67756f3da9172";
 
-  // Here we are building the URLs we need to query the database
-  var city = cityName
-  var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
-  var queryURL2 = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + APIKey;
+    // Here we are building the URLs we need to query the database
+    var city = cityName
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
+    var queryURL2 = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + APIKey;
 
-  // Here we run our AJAX call to the OpenWeatherMap API for the today's weather
-  $.ajax({
-    url: queryURL,
-    method: "GET"
-  })
-  // We store all of the retrieved data inside of an object called "response"
+    // Here we run our AJAX call to the OpenWeatherMap API for the today's weather
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    })
+
+    // We store all of the retrieved data inside of an object called "response"
     .then(function(response) {
 
       // Transfer content to HTML
@@ -61,6 +65,7 @@ document.getElementById("submitBtn").addEventListener("click",function(event) {
       var lat = response.coord.lat;
       var lon = response.coord.lon;
       var queryURL3 = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=" + APIKey;
+
       $.ajax({
         url: queryURL3,
         method: "GET"
@@ -72,10 +77,11 @@ document.getElementById("submitBtn").addEventListener("click",function(event) {
     });
 
     // Here we run our AJAX call to the OpenWeatherMap API for the 5 day forecast
-  $.ajax({
-    url: queryURL2,
-    method: "GET"
-  })
+    $.ajax({
+      url: queryURL2,
+      method: "GET"
+    })
+
     // We store all of the retrieved data inside of an object called "response2"
     .then(function(response2) {
 
@@ -110,5 +116,4 @@ document.getElementById("submitBtn").addEventListener("click",function(event) {
       };
 
     });
-
 });
