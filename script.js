@@ -1,3 +1,5 @@
+var cityList = [];
+
 // City search submission process
 document.getElementById("submitBtn").addEventListener("click",function(event) {
     event.preventDefault();
@@ -7,16 +9,18 @@ document.getElementById("submitBtn").addEventListener("click",function(event) {
 
         // Create a city object from submission
         var cityName = citySearch.value.trim();
-
+        console.log(cityName);
         // Check function is not b a city object from submission
         if(cityName == ""){
           alert("Enter a city!");
         }
+        cityList.push(cityName);
 
     // Creates list based on city name entered in aside form
     var newCity = $("<li></li>").text(cityName).addClass("list-group-item");
     $("#list").prepend(newCity);
 
+    //APIKey for source
     var APIKey = "c015bf6d88825f9546c67756f3da9172";
 
     // Here we are building the URLs we need to query the database
@@ -116,4 +120,4 @@ document.getElementById("submitBtn").addEventListener("click",function(event) {
       };
 
     });
-});
+      //console.log($("li.list-group-item").text());

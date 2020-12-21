@@ -13,6 +13,7 @@ header {
   text-align: center;
   padding: 5px;
 }
+
 input[type=text] {
   width: 100%;
   color: black;
@@ -22,19 +23,20 @@ input[type=text] {
   border-radius: 4px;
   cursor: pointer;
 }
-#submitBtn{
+
+#submitBtn {
   background-color: rgb(33, 95, 209);
   color: rgb(255, 255, 255);
 }
 
-#todayUV{
-    background-color:red;
+#todayUV {
+  background-color:red;
 }
 
-.col-3{
+.col-3 {
   background-color: rgb(252, 239, 223);
 }
 
-.col{
-  border: 2px solid rgb(252, 239, 223);
+.col {
+  border: 3px solid rgb(252, 229, 202);
 }
