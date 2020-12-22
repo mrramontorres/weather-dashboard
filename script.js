@@ -88,7 +88,20 @@
       })
         .then(function(response3) {
           var uv = response3.value;
+          console.log(uv);
+
           $("#todayUV").text(uv);
+          console.log($("#todayUV").text(uv));
+        if(uv < 2.99) {
+          $("#todayUV").css({'background-color':'#008000'});
+        } else if ( 3 <= uv <= 5) {
+          $("#todayUV").css({'background-color':'#FFA500'});
+        } else if ( 5 < uv <= 7) {
+          $("#todayUV").css({'background-color':'#ffff00'});
+        } else if ( 7 < uv ) {
+          $("#todayUV").css({'background-color':'#FF0000'});
+        }
+
         });
     });
 

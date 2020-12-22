@@ -30,7 +30,13 @@ input[type=text] {
 }
 
 #todayUV {
-  background-color:red;
+  font-size: large;
+  /*
+  background-color:green;
+  background-color:Yellow;
+  background-color:Orange;
+  background-color:Red;
+  */
 }
 
 .col-3 {
@@ -39,4 +45,9 @@ input[type=text] {
 
 .col {
   border: 3px solid rgb(252, 229, 202);
+}
+
+div#weathercontainer.col {
+  border: 3px solid rgb(255, 255, 255);
+  padding: 10px;
 }
