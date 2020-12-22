@@ -103,17 +103,13 @@
 
       var forecastArray = [2,10,18,26,34];
       for (i = 0; i <forecastArray.length; i++) {
-
-        console.log(response2);
       // Converting dt - SOURCE CODE from above
-        console.log(forecastArray[i]);
         var newDateObj =new Date(response2.list[forecastArray[i]].dt_txt);
-        var date_ob = new Date(newDateObj);                             // initialize new Date object
+        var date_ob = new Date(newDateObj);                         // initialize new Date object
         var year = date_ob.getFullYear().toString().substr(-2);     // year as 4 digits (YYYY)
         var month = ("0" + (date_ob.getMonth() + 1)).slice(-2);     // month as 2 digits (MM)
         var date = ("0" + date_ob.getDate()).slice(-2);             // date as 2 digits (DD)
         var t2 = " " + month + "/" + date+ "/" + year + " ";        // date as MM/DD/YY format
-        console.log(t2);
 
         // Prepare fahrenheit for transfer
         var tempF = (response2.list[forecastArray[i]].main.temp - 273.15) * 1.80 + 32;
