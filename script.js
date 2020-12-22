@@ -121,7 +121,7 @@
         // Prepare variables for transfer append
         var forcastDate = $("<p></p>").text(t2);
         var forcastIcon = $("<a></a>").html('<img src="' + iconLocation +'" </img>');
-        var forcastTemp = $("<p></p>").text("Temperature: " + tempF.toFixed(1) + " deg");
+        var forcastTemp = $("<p></p>").text("Temperature: " + tempF.toFixed(1) + " " + String.fromCharCode(186)+"F");
         var forcastHumi = $("<p></p>").text("Humidity: " + response2.list[forecastArray[i]].main.humidity.toFixed(0)+ "%");
         var newDiv = $("<div></div>").append(forcastDate, forcastIcon, forcastTemp, forcastHumi).addClass("col card bg-primary text-white");
 
